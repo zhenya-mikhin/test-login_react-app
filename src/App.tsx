@@ -5,7 +5,7 @@ import { Profile } from './pages/Profile/Profile'
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="container">
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/profile" exact component={Profile} />
