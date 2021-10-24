@@ -1,8 +1,15 @@
-import React from 'react';
+import React from 'react'
+import { Switch, Route } from "react-router-dom"
+import { Home } from './pages/Home/Home'
+import { Profile } from './pages/Profile/Profile'
 
-function App() {
+const App = () => {
   return (
     <div className="App">
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/profile" exact component={Profile} />
+      </Switch>
     </div>
   );
 }
