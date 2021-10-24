@@ -1,14 +1,18 @@
 import React from 'react'
 import { Switch, Route } from "react-router-dom"
-import { Home } from './pages/Home/Home'
-import { Profile } from './pages/Profile/Profile'
+import { routes } from './routes'
 
 const App = () => {
   return (
     <div className="container">
       <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/profile" exact component={Profile} />
+        {routes.map(route => (
+          <Route
+            key={route.name}
+            path={route.path}
+            exact={route.isExact}
+            component={route.component} />
+        ))}
       </Switch>
     </div>
   );

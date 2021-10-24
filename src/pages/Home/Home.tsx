@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { connect } from 'react-redux'
 
 import s from './Home.module.scss'
 
 interface Props {
-
+  logIn: Function,
+  error: string
 }
 
-export const Home = (props: Props) => {
+const Home = (props: Props) => {
 	return (
 		<form className={s.login_form}>
       <div className={s.login_form__wrapper}>
@@ -21,3 +23,13 @@ export const Home = (props: Props) => {
     </form>
 	)
 }
+
+const mapStateToProps = (state: any) => ({
+  error: state.errorMessage
+})
+
+const mapDispatchToProps = (dispatch: Function) => ({
+  logIn: (login: string, password: string) => dispatch({ type: 'LOG_IN', payload: { login, password}})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
