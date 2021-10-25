@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import { authData } from '../../services/authService'
 
 import s from './Home.module.scss'
 
 interface Props {
   logIn: Function,
   error: boolean,
-  isAuthorized: boolean,
-  login: string,
-  password: string
+  isAuthorized: boolean
 }
 
 const Home = (props: Props) => {
@@ -37,6 +36,15 @@ const Home = (props: Props) => {
     return <Redirect to='/profile' />
   }
 
+  // Данная функция добавлена для реализации пункта задания про кнопку.
+  // В предыдущем коммите реализован, на мой взгляд, более безопасный и
+  // логичный функционал
+  const isDisabled = (login: string, password: string) => {
+    return (login === authData.login && password === authData.password)
+            ? false
+            : true
+  }
+
 	return (
 		<form className={s.login_form} onSubmit={handleSubmit}>
       <div className={s.login_form__wrapper}>
@@ -62,6 +70,7 @@ const Home = (props: Props) => {
       <button
         className={s.login_form__btn}
         type='submit'
+        disabled={isDisabled(login, password)}
       >
         Войти
       </button>

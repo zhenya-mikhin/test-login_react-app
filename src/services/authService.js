@@ -7,3 +7,5 @@ export const logIn = (login, password) => (
     }
   })
 )
+
+export const authData = { login: 'developer21', password: '123456' }
